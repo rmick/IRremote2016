@@ -82,6 +82,9 @@
 #define DECODE_LTTO			 1
 #define SEND_LTTO			 1
 
+#define DECODE_BRX           1
+#define SEND_BRX             1
+
 //------------------------------------------------------------------------------
 // When sending a Pronto code we request to send either the "once" code
 //                                                   or the "repeat" code
@@ -123,6 +126,7 @@ typedef
 		PRONTO,
 		LEGO_PF,
 		LTTO,
+        BRX,
 	}
 decode_type_t;
 
@@ -180,7 +184,7 @@ class IRrecv
     
 		void  blink13    (int blinkflag) ;
 		int   decode     (decode_results *results) ;
-		bool  enableIRIn (bool enable ) ;
+		bool  enableIRIn (bool enable=true ) ;
 		bool  isIdle     ( ) ;
 		void  resume     ( ) ;
 
@@ -259,6 +263,10 @@ class IRrecv
 #		if DECODE_LTTO
 			bool  decodeLTTO(decode_results *results);
 #		endif
+        //......................................................................
+#        if DECODE_BRX
+            bool  decodeBRX(decode_results *results);
+#        endif
 } ;
 
 //------------------------------------------------------------------------------
@@ -351,6 +359,10 @@ class IRsend
 #		if SEND_LTTO
 			void  sendLTTO(unsigned long data, int nbits, bool beacon);
 #		endif
+    //......................................................................
+#        if SEND_BRX
+            void  sendBRX(unsigned long data, int nbits);
+#        endif
 } ;
 
 #endif

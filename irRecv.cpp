@@ -95,6 +95,11 @@ int  IRrecv::decode (decode_results *results)
 	if (decodeLTTO(results))  return true;
 #endif
 
+#ifdef DECODE_BRX
+    DBG_PRINTLN("Attempting BRX decode");
+    if (decodeBRX(results))  return true;
+#endif
+    
 	// decodeHash returns a hash on any input.
 	// Thus, it needs to be last in the list.
 	// If you add any decodes, add them before this.
