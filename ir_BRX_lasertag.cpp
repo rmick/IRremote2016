@@ -121,7 +121,7 @@ bool  IRrecv::decodeBRX(decode_results *results)
 		{
 			data = (data << 1) | 1;
 			results->bits++;
-            Serial.print("IRrecv::decodeBRX() - ONE");
+            Serial.print("\tIRrecv::decodeBRX() - ONE");
             Serial.print("\t in bit number ");
             Serial.println(offset);
 		}
@@ -129,13 +129,13 @@ bool  IRrecv::decodeBRX(decode_results *results)
 		{
 			data = (data << 1) | 0;
 			results->bits++;
-            Serial.print("IRrecv::decodeBRX() - ZERO");
+            Serial.print("\tIRrecv::decodeBRX() - ZERO");
             Serial.print("\t in bit number ");
              Serial.println(offset);
 		}
         else if (MATCH_SPACE(results->rawbuf[offset], BIT_SPACE))
         {
-            Serial.print("IRrecv::decodeBRX() - SPACE");
+            Serial.print("\tIRrecv::decodeBRX() - SPACE");
             Serial.print("\t in bit number ");
              Serial.println(offset);
         }
@@ -154,10 +154,11 @@ bool  IRrecv::decodeBRX(decode_results *results)
 	results->value = data;
 	results->decode_type = BRX;
 	
-    Serial.print("\n\tSuccess = BRX : ");
+    Serial.print("\n\t\tSuccess = BRX : ");
     Serial.println (data);
     Serial.print("Number of bits = ");
     Serial.println(results->bits);
+    Serial.println("-------------------------------------------------------------");
 
 	return true;
 }
