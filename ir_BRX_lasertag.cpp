@@ -148,7 +148,8 @@ bool  IRrecv::decodeBRX(decode_results *results)
         }
 		offset++;
 	}
-
+    Serial.println("-------------------------------------------------------------");
+    
 	// Success
 	results->value = data;
 	results->decode_type = BRX;
@@ -157,7 +158,6 @@ bool  IRrecv::decodeBRX(decode_results *results)
     Serial.println (data);
     Serial.print("Number of bits = ");
     Serial.println(results->bits);
-    Serial.println("-------------------------------------------------------------");
 
 	return true;
 }
