@@ -83,18 +83,18 @@ bool  IRrecv::decodeBRX(decode_results *results)
     
     //if (irparams.rawlen != 1 + 2 + (2 * BITS) + 1)  return false ;
     Serial.print("IRrecv::decodeBRX() - Raw Length = ");
-    Serial.print(irparams.rawlen);
+    Serial.println(irparams.rawlen);
 	
     // Check initial Mark+Space match
     if (!MATCH_MARK(results->rawbuf[offset++], HDR_MARK))
     {
-        Serial.print("IRrecv::decodeBRX() - invalid HeaderMark");
+        Serial.print("IRrecv::decodeBRX() - invalid HeaderMark = ");
         Serial.println(results->rawbuf[offset-1]);
         return false;
     }
 	if (!MATCH_SPACE(results->rawbuf[offset++], HDR_SPACE))
     {
-        Serial.print("IRrecv::decodeBRX() - invalid HeaderSpace");
+        Serial.print("IRrecv::decodeBRX() - invalid HeaderSpace = ");
         Serial.println(results->rawbuf[offset-1]);
         return false ;
     }
@@ -107,9 +107,11 @@ bool  IRrecv::decodeBRX(decode_results *results)
 
 		if (!MATCH_SPACE(results->rawbuf[offset++], BIT_SPACE))
         {
-            Serial.print("IRrecv::decodeBRX() - invalid BitSpace");
-            Serial.println(results->rawbuf[offset-1]);
-            return false;
+            Serial.print("IRrecv::decodeBRX() - invalid BitSpace = ");
+            Serial.print(results->rawbuf[offset-1]);
+            Serial.print("\t in bit number ");
+            Serial.println(offset);
+            //return false;
         }
         
 		// IR data is big-endian, so we shuffle it in from the right:
@@ -125,7 +127,7 @@ bool  IRrecv::decodeBRX(decode_results *results)
 		}
         else
         {
-            Serial.print("IRrecv::decodeBRX() - invalid 1/0 bit");
+            Serial.print("IRrecv::decodeBRX() - invalid 1/0 bit = ");
             Serial.println(results->rawbuf[offset]);
         }
 		offset++;
