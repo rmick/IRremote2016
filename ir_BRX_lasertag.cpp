@@ -40,7 +40,7 @@
 #define HDR_MARK    2000  // The length of the Header:Mark
 #define HDR_SPACE    500  // The lenght of the Header:Space
 
-#define BIT_MARK     500  // The length of a Bit:Mark
+#define BIT_MARK     470  // The length of a Bit:Mark
 #define ONE_SPACE   1000  // The length of a Bit:Space for 1's
 #define ZERO_SPACE   500  // The length of a Bit:Space for 0's
 
