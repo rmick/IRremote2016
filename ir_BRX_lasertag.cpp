@@ -60,7 +60,7 @@ void  IRsend::sendBRX (unsigned long data,  int nbits)
     
     // Header
     mark (HDR_MARK);
-    space(HDR_SPACE);
+    //space(HDR_SPACE);
     
     // Data
     for (unsigned long  mask = 1UL << (nbits - 1);  mask;  mask >>= 1) {
